@@ -1,0 +1,190 @@
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #2f4fec 0%, #00ff1e 100%);
+    color: #2D3748;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Neuer Wrapper für die gesamte Anwendung */
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: linear-gradient(135deg, #2fed12 0%, #f10101 100%);
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.884);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    width: 90%;
+    transition: all 0.5s ease;
+}
+
+.container.break-mode {
+    background: linear-gradient(135deg, #ffff00 0%, #f101d5 100%);
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timer {
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 2rem 0;
+    font-variant-numeric: tabular-nums;
+    color: #1A202C;
+}
+
+.mode {
+    font-size: 1.1rem;
+    color: #4A5568;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.round-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.controls button {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.controls button#start {
+    background: #4CAF50;
+    color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.controls button#reset {
+    background: #f44336;
+    color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.controls button#reset:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+}
+
+.controls button.mode-toggle {
+    background: linear-gradient(135deg, #2fed12 0%, #f10101 100%);
+    color: white;
+    width: 220px;
+    border-radius: 100px;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 15px rgba(47, 237, 18, 0.2);
+    transition: all 0.3s ease;
+}
+
+.break-mode .controls button#start {
+    background: #4CAF50;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.break-mode .controls button#reset {
+    background: #f44336;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.break-mode .controls button.mode-toggle {
+    background: linear-gradient(135deg, #ffff00 0%, #f101d5 100%);
+    box-shadow: 0 4px 15px rgba(255, 255, 0, 0.3);
+}
+
+.controls button.mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 13, 255, 0.3);
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 0s;
+    stroke-dasharray: 415;
+    stroke-dashoffset: 415;
+}
+
+.progress-ring.animating .progress-ring__circle {
+    transition: stroke-dashoffset 1s linear;
+    stroke-dashoffset: 0;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        width: 85%;
+        margin: 0 auto;
+    }
+    
+    .timer {
+        font-size: 4rem;
+    }
+    
+    .controls button {
+        font-size: 1rem;
+    }
+
+    .round-buttons {
+        gap: 1rem;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .controls button#start,
+    .controls button#reset {
+        width: 80px;
+        height: 80px;
+    }
+
+    .controls button.mode-toggle {
+        width: 180px;
+        padding: 0.8rem 1.5rem;
+    }
+} 
