@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Two</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Take Two</h1>
+        <h2>Ask Any Question</h2>
+        <input type="text" id="question" placeholder="Type your question here...">
+        <button onclick="getAnswer()">Get Answer</button>
+        <div id="error"></div>
+        <div id="loading">
+            <div id="progress"></div>
+        </div>
+        <div id="status"></div>
+        <div id="answer"></div>
+    </div>
+
+    <script>
+        function getAnswer() {
+            const answer = document.getElementById('answer');
+            const loading = document.getElementById('loading');
+            const progress = document.getElementById('progress');
+            const status = document.getElementById('status');
+            const error = document.getElementById('error');
+            const question = document.getElementById('question').value;
+            
+            // Clear previous states
+            error.textContent = "";
+            answer.textContent = "";
+            
+            // Check if question ends with question mark
+            if (!question.trim().endsWith('?')) {
+                error.textContent = "That is not a question, try again";
+                return;
+            }
+
+            // Proceed with answer animation
+            loading.style.display = "block";
+            status.textContent = "Finding the answer...";
+            progress.style.width = "0%";
+
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width < 100) {
+                    width += 2;
+                    progress.style.width = width + "%";
+                }
+                
+                if (width >= 100) {
+                    clearInterval(interval);
+                    status.textContent = "Answer found!";
+                    setTimeout(() => {
+                        loading.style.display = "none";
+                        status.textContent = "";
+                        answer.textContent = "2";
+                    }, 800);
+                }
+            }, 20);
+        }
+
+        document.getElementById('question').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                getAnswer();
+            }
+        });
+    </script>
+</body>
+</html> 
